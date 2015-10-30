@@ -25,6 +25,12 @@ $(document).ready(function() {
   function stripeResponseHandler(status, response) {
     // Get a reference to the form:
     var f = $("#new_user");
+    if (response.error) {
+    // Show the errors on the form
+    
+    f.append('<p value="' + response.error.message + '" />');
+    //f.find('button').prop('disabled', false);
+  } else {
 
     // Get the token from the response:
     var token = response.id;
@@ -34,5 +40,6 @@ $(document).ready(function() {
 
     // Submit the form:
     f.get(0).submit(); 
+  }
   }
 });
